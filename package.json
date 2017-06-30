@@ -12,9 +12,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "prettier": "prettier --no-semi --single-quote --trailing-comma=es5 --jsx-bracket-same-line 'src/**/*.js' --write"
+    "prettier": "prettier --no-semi --single-quote --trailing-comma=es5 --jsx-bracket-same-line '{.storybook/config.js,src/**/*.js}' --write",
+    "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "devDependencies": {
+    "@storybook/react": "^3.1.7",
     "prettier": "^1.5.2"
   }
 }
