@@ -1,7 +1,8 @@
-import { configure } from '@storybook/react'
+import React from 'react'
+import { addDecorator, configure } from '@storybook/react'
 
 function loadStories() {
-  const req = require.context('../src', true, /\.stories\.js$/)
+  const req = require.context('../src/components', true, /\.stories\.js$/)
   req.keys().forEach(filename => req(filename))
 }
 

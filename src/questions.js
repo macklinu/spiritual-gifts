@@ -1,4 +1,8 @@
-export const questions = [
+// @ts-check
+
+import { List } from 'immutable'
+
+export default List([
   'I am thorough in the things that I do.',
   'God has called me to start new churches or parachurch organizations to reach people who don’t know Jesus.',
   'I can sometimes help people understand the spiritual source of their problems.',
@@ -113,4 +117,4 @@ export const questions = [
   'I spend time studying the Bible because I understand the awesome responsibility a person has in accurately communicating God’s Word.',
   'When I speak in tongues, I think I am worshipping Jesus.',
   'I am able to apply my knowledge in practical and helpful ways.',
-]
+])

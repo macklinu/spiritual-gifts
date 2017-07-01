@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`calculates gifts 1`] = `
+Immutable.OrderedMap {
+  p: 3,
+  b: 2,
+  j: 1,
+  a: 0,
+  c: 0,
+  d: 0,
+  e: 0,
+  f: 0,
+  g: 0,
+  h: 0,
+  i: 0,
+  k: 0,
+  l: 0,
+  m: 0,
+  n: 0,
+  o: 0,
+  q: 0,
+}
+`;
