@@ -3,8 +3,8 @@ import React from 'react'
 export default () =>
   <div>
     <p>
-      Respond to each question on the Spiritual Gifts Assessment (found on the
-      next few pages) according to the following scale:
+      Respond to each question on the Spiritual Gifts Assessment according to
+      the following scale:
     </p>
     <ol>
       <li>Not at All / Never True</li>
