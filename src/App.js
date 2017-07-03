@@ -2,29 +2,13 @@
 
 import React, { Component } from 'react'
 import { List, Map } from 'immutable'
-import {
-  Button,
-  Heading,
-  Container,
-  Panel,
-  Progress,
-  Space,
-  Text,
-} from 'rebass'
+import { Button, Heading, Container, Space, Text } from 'rebass'
 import ButtonGroup from './components/ButtonGroup'
 import Explanation from './components/Explanation'
+import ProgressIndicator from './components/ProgressIndicator'
 import questions from './questions'
 import gifts from './gifts'
 import calculateGifts from './calculateGifts'
-
-const ProgressIndicator = ({ currentQuestion, totalQuestions }) =>
-  <Panel theme="info">
-    <Text>
-      Answered {currentQuestion} of {totalQuestions} questions
-    </Text>
-    <Space x={1} />
-    <Progress value={currentQuestion / totalQuestions} />
-  </Panel>
 
 const Question = ({ text, onAnswered }) =>
   <div>
