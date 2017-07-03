@@ -3,24 +3,12 @@
 import React, { Component } from 'react'
 import { List, Map } from 'immutable'
 import { Button, Heading, Container, Space, Text } from 'rebass'
-import ButtonGroup from './components/ButtonGroup'
 import Explanation from './components/Explanation'
 import ProgressIndicator from './components/ProgressIndicator'
+import Question from './components/Question'
 import questions from './questions'
 import gifts from './gifts'
 import calculateGifts from './calculateGifts'
-
-const Question = ({ text, onAnswered }) =>
-  <div>
-    <Text>
-      {text}
-    </Text>
-    <Space x={2} />
-    <ButtonGroup
-      labels={['Not at All', 'Sometimes', 'Most of the Time', 'Consistently']}
-      onSelected={onAnswered}
-    />
-  </div>
 
 const Gift = ({ key, gift, description }) =>
   <li key={key}>
