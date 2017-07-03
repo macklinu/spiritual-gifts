@@ -2,23 +2,14 @@
 
 import React, { Component } from 'react'
 import { List, Map } from 'immutable'
-import { Button, Heading, Container, Space, Text } from 'rebass'
+import { Button, Container, Space } from 'rebass'
 import Explanation from './components/Explanation'
 import ProgressIndicator from './components/ProgressIndicator'
 import Question from './components/Question'
+import Gift from './components/Gift'
 import questions from './questions'
 import gifts from './gifts'
 import calculateGifts from './calculateGifts'
-
-const Gift = ({ key, gift, description }) =>
-  <li key={key}>
-    <Heading level={3} size={3}>
-      {gift}
-    </Heading>
-    <Text>
-      {description}
-    </Text>
-  </li>
 
 class App extends Component {
   state = {
