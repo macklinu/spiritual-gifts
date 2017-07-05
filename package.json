@@ -24,6 +24,7 @@
   },
   "now": {
     "alias": "spiritual-gifts",
-    "name": "spiritual-gifts"
+    "name": "spiritual-gifts",
+    "public": true
   }
 }
