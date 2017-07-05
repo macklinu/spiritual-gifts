@@ -23,6 +23,7 @@
     "prettier": "^1.5.2"
   },
   "now": {
-    "alias": "spiritual-gifts"
+    "alias": "spiritual-gifts",
+    "name": "spiritual-gifts"
   }
 }
