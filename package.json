@@ -21,11 +21,5 @@
   "devDependencies": {
     "@storybook/react": "^3.1.7",
     "prettier": "^1.5.2"
-  },
-  "now": {
-    "alias": "spiritual-gifts",
-    "files": ["build"],
-    "name": "spiritual-gifts",
-    "public": true
   }
 }
