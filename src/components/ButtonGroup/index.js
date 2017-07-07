@@ -1,46 +1,19 @@
 // @ts-check
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { ButtonOutline } from 'rebass'
+import React from 'react'
+import glamorous from 'glamorous'
+import Button from '../Button'
 
-export default class ButtonGroup extends Component {
-  static propTypes = {
-    labels: PropTypes.arrayOf(PropTypes.string).isRequired,
-    onSelected: PropTypes.func.isRequired,
-  }
+const FlexContainer = glamorous.div({
+  display: 'flex',
+  justifyContent: 'space-between',
+})
 
-  static defaultProps = {
-    labels: [],
-    onSelected: () => {},
-  }
-
-  state = {
-    selectedValue: undefined,
-  }
-
-  render() {
-    return (
-      <div>
-        {this.props.labels.map((label, index) => {
-          const rounded =
-            index === 0
-              ? 'left'
-              : index === this.props.labels.length - 1 ? 'right' : false
-          return (
-            <ButtonOutline
-              key={label}
-              onClick={this.handleClick(index)}
-              rounded={rounded}>
-              {label}
-            </ButtonOutline>
-          )
-        })}
-      </div>
-    )
-  }
-
-  handleClick = index => () => {
-    this.props.onSelected(index)
-  }
-}
+export default ({ labels, onSelected }) =>
+  <FlexContainer>
+    {labels.map((label, index) =>
+      <Button key={label} onClick={() => onSelected(index)} outline>
+        {label}
+      </Button>
+    )}
+  </FlexContainer>

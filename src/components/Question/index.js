@@ -1,13 +1,12 @@
 import React from 'react'
-import { Text, Space } from 'rebass'
+import Text from '../Text'
 import ButtonGroup from '../ButtonGroup'
 
 export default ({ text, onAnswered }) =>
   <div>
-    <Text>
+    <Text padded>
       {text}
     </Text>
-    <Space x={2} />
     <ButtonGroup
       labels={['Not at All', 'Sometimes', 'Most of the Time', 'Consistently']}
       onSelected={onAnswered}
