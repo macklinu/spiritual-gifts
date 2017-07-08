@@ -3,11 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "color": "^2.0.0",
-    "glamor": "^3.0.0-2",
-    "glamorous": "^3.23.5",
     "immutable": "^3.8.1",
-    "normalize.css": "^7.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.10",
