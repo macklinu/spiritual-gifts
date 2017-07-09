@@ -17,7 +17,7 @@ const enhance = compose(
       gifts.get(result, {
         key: result,
         gift: '?',
-        description: `Could not find gift for id "${result}".`,
+        description: `Something went wrong - could not find gift for id "${result}".`,
       })
     )
     const rest = gifts.filterNot((_, key) => giftKeys.includes(key)).toList()
