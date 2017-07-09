@@ -6,10 +6,12 @@
     "immutable": "^3.8.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-router-dom": "^4.1.1",
     "react-scripts": "1.0.10",
     "rebass": "^1.0.0-4",
     "recompose": "^0.23.5",
-    "styled-components": "^2.1.1"
+    "styled-components": "^2.1.1",
+    "url-search-params-polyfill": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -3,6 +3,7 @@
 import React from 'react'
 import { List, Map } from 'immutable'
 import { Box, Button, Heading, Flex } from 'rebass'
+import { Redirect } from 'react-router-dom'
 import compose from 'recompose/compose'
 import withState from 'recompose/withState'
 import withHandlers from 'recompose/withHandlers'
@@ -10,9 +11,7 @@ import setDisplayName from 'recompose/setDisplayName'
 import Explanation from './components/Explanation'
 import Progress from './components/Progress'
 import Question from './components/Question'
-import Gift from './components/Gift'
 import questions from './questions'
-import gifts from './gifts'
 import calculateGifts from './calculateGifts'
 
 const enhance = compose(
@@ -60,15 +59,15 @@ export default enhance(({ data, onBegin, onAnswered }) =>
         />
       </Box>}
     {data.get('currentQuestion') === data.get('totalQuestions') &&
-      <Box>
-        <h1>Your Spiritual Gifts</h1>
-        <ol>
-          {calculateGifts(data.get('answers'))
+      <Redirect
+        to={{
+          pathname: '/results',
+          search: `?${calculateGifts(data.get('answers'))
             .take(3)
             .keySeq()
-            .map(key => gifts.get(key))
-            .map(gift => <Gift {...gift} />)}
-        </ol>
-      </Box>}
+            .map((key, index) => `${index}=${key}`)
+            .join('&')}`,
+        }}
+      />}
   </Flex>
 )
