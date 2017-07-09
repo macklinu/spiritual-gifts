@@ -1,16 +1,23 @@
 // @ts-check
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Group, ButtonOutline } from 'rebass'
+import React from 'react'
+import { ButtonCircle, Flex, Box, Text } from 'rebass'
 
 export default ({ labels, onSelected = _ => {} }) =>
-  <Group>
+  <div>
     {labels.map((label, index) =>
-      <ButtonOutline
-        key={label}
-        onClick={() => onSelected(index)}
-        children={label}
-      />
+      <Flex key={label} align="baseline" my={2}>
+        <Box flex="0 1 auto" mr={1}>
+          <ButtonCircle
+            onClick={() => onSelected(index)}
+            children={String.fromCharCode(97 + index).toUpperCase()}
+          />
+        </Box>
+        <Box flex="1 1 auto">
+          <Text>
+            {label}
+          </Text>
+        </Box>
+      </Flex>
     )}
-  </Group>
+  </div>

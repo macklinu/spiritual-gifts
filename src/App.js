@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { List, Map } from 'immutable'
-import { Button, Container } from 'rebass'
+import { Box, Button, Heading, Flex } from 'rebass'
 import compose from 'recompose/compose'
 import withState from 'recompose/withState'
 import withHandlers from 'recompose/withHandlers'
@@ -38,16 +38,18 @@ const enhance = compose(
   })
 )
 
+const responsiveWidths = [1, 3 / 4, 3 / 5, 1 / 2]
+
 export default enhance(({ data, onBegin, onAnswered }) =>
-  <Container>
+  <Flex wrap direction="column" align="center" justify="center">
     {data.get('currentQuestion') === undefined &&
-      <div>
-        <h1>Spiritual Gifts Assessment</h1>
+      <Box width={responsiveWidths}>
+        <Heading>Spiritual Gifts Assessment</Heading>
         <Explanation />
         <Button onClick={onBegin}>Begin</Button>
-      </div>}
+      </Box>}
     {data.get('currentQuestion') < data.get('totalQuestions') &&
-      <div>
+      <Box width={responsiveWidths}>
         <Progress
           currentQuestion={data.get('currentQuestion')}
           totalQuestions={data.get('totalQuestions')}
@@ -56,9 +58,9 @@ export default enhance(({ data, onBegin, onAnswered }) =>
           text={questions.get(data.get('currentQuestion'))}
           onAnswered={onAnswered}
         />
-      </div>}
+      </Box>}
     {data.get('currentQuestion') === data.get('totalQuestions') &&
-      <div>
+      <Box>
         <h1>Your Spiritual Gifts</h1>
         <ol>
           {calculateGifts(data.get('answers'))
@@ -67,6 +69,6 @@ export default enhance(({ data, onBegin, onAnswered }) =>
             .map(key => gifts.get(key))
             .map(gift => <Gift {...gift} />)}
         </ol>
-      </div>}
-  </Container>
+      </Box>}
+  </Flex>
 )

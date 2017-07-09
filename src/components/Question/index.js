@@ -1,14 +1,24 @@
 import React from 'react'
-import { Text } from 'rebass'
+import { Lead, Flex } from 'rebass'
 import ButtonGroup from '../ButtonGroup'
+import styled from 'styled-components'
+
+const TextContainer = styled(Flex)`height: ${props => props.height || '128px'};`
 
 export default ({ text, onAnswered }) =>
   <div>
-    <Text>
-      {text}
-    </Text>
+    <TextContainer align="center">
+      <Lead>
+        {text}
+      </Lead>
+    </TextContainer>
     <ButtonGroup
-      labels={['Not at All', 'Sometimes', 'Most of the Time', 'Consistently']}
+      labels={[
+        'Not at All / Never True',
+        'Sometimes / True Once in a While',
+        'Most of the Time / Usually True',
+        'Consistently / Definitely True',
+      ]}
       onSelected={onAnswered}
     />
   </div>

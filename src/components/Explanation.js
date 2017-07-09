@@ -1,4 +1,5 @@
 import React from 'react'
+import ButtonGroup from './ButtonGroup'
 
 export default () =>
   <div>
@@ -6,12 +7,14 @@ export default () =>
       Respond to each question on the Spiritual Gifts Assessment according to
       the following scale:
     </p>
-    <ol>
-      <li>Not at All / Never True</li>
-      <li>Sometimes / True Once in a While</li>
-      <li>Most of the Time / Usually True</li>
-      <li>Consistently / Definitely True</li>
-    </ol>
+    <ButtonGroup
+      labels={[
+        'Not at All / Never True',
+        'Sometimes / True Once in a While',
+        'Most of the Time / Usually True',
+        'Consistently / Definitely True',
+      ]}
+    />
     <p>
       <b>
         Answer according to who you <i>are</i>, not who you would like to be, or
