@@ -1,9 +1,17 @@
 // @ts-check
 
 import React from 'react'
+import compose from 'recompose/compose'
+import setDisplayName from 'recompose/setDisplayName'
+import defaultProps from 'recompose/defaultProps'
 import { ButtonCircle, Flex, Box, Text } from 'rebass'
 
-export default ({ labels, onSelected = _ => {} }) =>
+const enhance = compose(
+  setDisplayName('ButtonGroup'),
+  defaultProps({ labels: [], onSelected: () => {} })
+)
+
+export default enhance(({ labels, onSelected }) =>
   <div>
     {labels.map((label, index) =>
       <Flex key={label} align="baseline" my={2}>
@@ -21,3 +29,4 @@ export default ({ labels, onSelected = _ => {} }) =>
       </Flex>
     )}
   </div>
+)
