@@ -8,7 +8,7 @@ import withState from 'recompose/withState'
 import withHandlers from 'recompose/withHandlers'
 import setDisplayName from 'recompose/setDisplayName'
 import Explanation from './components/Explanation'
-import ProgressIndicator from './components/ProgressIndicator'
+import Progress from './components/Progress'
 import Question from './components/Question'
 import Gift from './components/Gift'
 import questions from './questions'
@@ -48,13 +48,13 @@ export default enhance(({ data, onBegin, onAnswered }) =>
       </div>}
     {data.get('currentQuestion') < data.get('totalQuestions') &&
       <div>
+        <Progress
+          currentQuestion={data.get('currentQuestion')}
+          totalQuestions={data.get('totalQuestions')}
+        />
         <Question
           text={questions.get(data.get('currentQuestion'))}
           onAnswered={onAnswered}
-        />
-        <ProgressIndicator
-          currentQuestion={data.get('currentQuestion')}
-          totalQuestions={data.get('totalQuestions')}
         />
       </div>}
     {data.get('currentQuestion') === data.get('totalQuestions') &&
