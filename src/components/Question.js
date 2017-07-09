@@ -1,6 +1,6 @@
 import React from 'react'
 import { Lead, Flex } from 'rebass'
-import ButtonGroup from '../ButtonGroup'
+import ButtonGroup from './ButtonGroup'
 import styled from 'styled-components'
 
 const TextContainer = styled(Flex)`height: ${props => props.height || '128px'};`
