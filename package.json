@@ -7,7 +7,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.10",
-    "rebass": "^0.3.4",
+    "rebass": "^1.0.0-4",
     "recompose": "^0.23.5"
   },
   "scripts": {

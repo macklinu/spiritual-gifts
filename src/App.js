@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { List, Map } from 'immutable'
-import { Button, Container, Space } from 'rebass'
+import { Button, Container } from 'rebass'
 import compose from 'recompose/compose'
 import withState from 'recompose/withState'
 import withHandlers from 'recompose/withHandlers'
@@ -52,7 +52,6 @@ export default enhance(({ data, onBegin, onAnswered }) =>
           text={questions.get(data.get('currentQuestion'))}
           onAnswered={onAnswered}
         />
-        <Space x={2} />
         <ProgressIndicator
           currentQuestion={data.get('currentQuestion')}
           totalQuestions={data.get('totalQuestions')}
