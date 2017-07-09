@@ -1,7 +1,8 @@
 import React from 'react'
+import setDisplayName from 'recompose/setDisplayName'
 import ButtonGroup from './ButtonGroup'
 
-export default () =>
+export default setDisplayName('Explanation')(() =>
   <div>
     <p>
       Respond to each question on the Spiritual Gifts Assessment according to
@@ -30,3 +31,4 @@ export default () =>
       God speak to you about this. After all, they’re His gifts.
     </p>
   </div>
+)
