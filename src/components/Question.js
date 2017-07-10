@@ -1,11 +1,15 @@
 import React from 'react'
 import { Lead, Flex } from 'rebass'
-import ButtonGroup from './ButtonGroup'
 import styled from 'styled-components'
+import compose from 'recompose/compose'
+import setDisplayName from 'recompose/setDisplayName'
+import ButtonGroup from './ButtonGroup'
 
 const TextContainer = styled(Flex)`height: ${props => props.height || '128px'};`
 
-export default ({ text, onAnswered }) =>
+const enhance = compose(setDisplayName('Question'))
+
+export default enhance(({ text, onAnswered }) =>
   <div>
     <TextContainer align="center">
       <Lead>
@@ -22,3 +26,4 @@ export default ({ text, onAnswered }) =>
       onSelected={onAnswered}
     />
   </div>
+)
