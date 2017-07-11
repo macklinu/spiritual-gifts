@@ -1,73 +1,51 @@
 // @ts-check
 
 import React from 'react'
-import { List, Map } from 'immutable'
 import { Box, Button, Heading, Flex } from 'rebass'
 import { Redirect } from 'react-router-dom'
-import compose from 'recompose/compose'
-import withState from 'recompose/withState'
-import withHandlers from 'recompose/withHandlers'
-import setDisplayName from 'recompose/setDisplayName'
+import { connect } from 'react-redux'
 import Explanation from './components/Explanation'
 import Progress from './components/Progress'
 import Question from './components/Question'
-import questions from './questions'
-import calculateGifts from './calculateGifts'
-
-const enhance = compose(
-  setDisplayName('App'),
-  withState(
-    'data',
-    'updateData',
-    Map({
-      currentQuestion: undefined,
-      totalQuestions: questions.size,
-      answers: List(),
-    })
-  ),
-  withHandlers({
-    onBegin: ({ updateData }) => () =>
-      updateData(data => data.set('currentQuestion', 0)),
-    onAnswered: ({ updateData }) => answer =>
-      updateData(data =>
-        data
-          .update('answers', value => value.push(answer))
-          .update('currentQuestion', value => value + 1)
-      ),
-  })
-)
+import { startQuiz } from './ducks/quiz'
+import {
+  getAnswers,
+  getQuizState,
+  getResultsSearchString,
+} from './ducks/quiz/selectors'
 
 const responsiveWidths = [1, 3 / 4, 3 / 5, 1 / 2]
 
-export default enhance(({ data, onBegin, onAnswered }) =>
+const App = ({ quizState, onBegin, answers, resultsSearchString }) =>
   <Flex wrap direction="column" align="center" justify="center">
-    {data.get('currentQuestion') === undefined &&
+    {quizState === 'initial' &&
       <Box width={responsiveWidths}>
         <Heading>Spiritual Gifts Assessment</Heading>
         <Explanation />
         <Button onClick={onBegin}>Begin</Button>
       </Box>}
-    {data.get('currentQuestion') < data.get('totalQuestions') &&
+    {quizState === 'inprogress' &&
       <Box width={responsiveWidths}>
-        <Progress
-          currentQuestion={data.get('currentQuestion')}
-          totalQuestions={data.get('totalQuestions')}
-        />
-        <Question
-          text={questions.get(data.get('currentQuestion'))}
-          onAnswered={onAnswered}
-        />
+        <Progress />
+        <Question />
       </Box>}
-    {data.get('currentQuestion') === data.get('totalQuestions') &&
+    {quizState === 'complete' &&
       <Redirect
         to={{
           pathname: '/results',
-          search: `?${calculateGifts(data.get('answers'))
-            .take(3)
-            .keySeq()
-            .map((key, index) => `${index}=${key}`)
-            .join('&')}`,
+          search: resultsSearchString,
         }}
       />}
   </Flex>
-)
+
+const mapStateToProps = state => ({
+  quizState: getQuizState(state),
+  answers: getAnswers(state),
+  resultsSearchString: getResultsSearchString(state),
+})
+
+const mapDispatchToProps = dispatch => ({
+  onBegin: () => dispatch(startQuiz()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -1,14 +1,12 @@
 import React from 'react'
-import compose from 'recompose/compose'
-import setDisplayName from 'recompose/setDisplayName'
-import mapProps from 'recompose/mapProps'
+import { connect } from 'react-redux'
 import { Text } from 'rebass'
+import { getProgressText } from '../ducks/quiz/selectors'
 
-const enhance = compose(
-  setDisplayName('Progress'),
-  mapProps(({ currentQuestion, totalQuestions }) => ({
-    text: `${currentQuestion + 1} of ${totalQuestions}`,
-  }))
-)
+const Progress = ({ text }) => <Text children={text} />
 
-export default enhance(({ text }) => <Text children={text} />)
+const mapStateToProps = state => ({
+  text: getProgressText(state),
+})
+
+export default connect(mapStateToProps)(Progress)

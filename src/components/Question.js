@@ -1,15 +1,14 @@
 import React from 'react'
 import { Lead, Flex } from 'rebass'
 import styled from 'styled-components'
-import compose from 'recompose/compose'
-import setDisplayName from 'recompose/setDisplayName'
+import { connect } from 'react-redux'
 import ButtonGroup from './ButtonGroup'
+import { answerQuestion } from '../ducks/quiz'
+import { getCurrentQuestionText } from '../ducks/quiz/selectors'
 
 const TextContainer = styled(Flex)`height: ${props => props.height || '128px'};`
 
-const enhance = compose(setDisplayName('Question'))
-
-export default enhance(({ text, onAnswered }) =>
+const Question = ({ text, onAnswered }) =>
   <div>
     <TextContainer align="center">
       <Lead>
@@ -26,4 +25,13 @@ export default enhance(({ text, onAnswered }) =>
       onSelected={onAnswered}
     />
   </div>
-)
+
+const mapStateToProps = state => ({
+  text: getCurrentQuestionText(state),
+})
+
+const mapDispatchToProps = dispatch => ({
+  onAnswered: answer => dispatch(answerQuestion(answer)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Question)

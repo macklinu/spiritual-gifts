@@ -1,31 +1,12 @@
 import React from 'react'
-import compose from 'recompose/compose'
-import mapProps from 'recompose/mapProps'
-import setDisplayName from 'recompose/setDisplayName'
+import { connect } from 'react-redux'
 import { Flex, Box, Heading } from 'rebass'
 import Gift from './components/Gift'
-import gifts from './gifts'
+import { getGiftResults } from './ducks/quiz/selectors'
 
 const giftWidths = [1, 1, 1 / 3, 1 / 3]
 
-const enhance = compose(
-  setDisplayName('Results'),
-  mapProps(({ location }) => {
-    const params = new URLSearchParams(location.search)
-    const giftKeys = [params.get(0), params.get(1), params.get(2)]
-    const results = giftKeys.map(result =>
-      gifts.get(result, {
-        key: result,
-        gift: '?',
-        description: `Something went wrong - could not find gift for id "${result}".`,
-      })
-    )
-    const rest = gifts.filterNot((_, key) => giftKeys.includes(key)).toList()
-    return { results, rest }
-  })
-)
-
-export default enhance(({ results, rest }) =>
+const Results = ({ results, rest }) =>
   <Flex wrap>
     <Box p={2} width={1}>
       <Heading children="Your Spiritual Gifts" />
@@ -36,4 +17,7 @@ export default enhance(({ results, rest }) =>
       </Box>
     )}
   </Flex>
-)
+
+const mapStateToProps = (state, props) => ({ ...getGiftResults(state, props) })
+
+export default connect(mapStateToProps)(Results)
