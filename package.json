@@ -11,7 +11,7 @@
     "react-router-dom": "^4.1.1",
     "react-router-redux": "next",
     "react-scripts": "1.0.10",
-    "rebass": "^1.0.0-4",
+    "rebass": "^1.0.3",
     "recompose": "^0.23.5",
     "redux": "^3.7.1",
     "reselect": "^3.0.1",
