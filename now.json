@@ -1,5 +1,5 @@
 {
-  "alias": "spiritual-gifts",
+  "alias": ["spiritual-gifts"],
   "files": ["build"],
   "name": "spiritual-gifts",
   "public": true

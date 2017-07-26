@@ -1,15 +1,9 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
+    working_directory: ~/spiritual-gifts
     docker:
       - image: circleci/node:8
-
-    working_directory: ~/spiritual-gifts
-
     steps:
       - checkout
 
@@ -21,13 +15,20 @@ jobs:
           - v1-dependencies-
 
       - run: yarn install
+      - run: sudo apt-get install jq
+      - run: sudo yarn global add now npx
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
-      # run tests!
       - run: yarn test -- --coverage
 
+      - run: yarn run build
+      - store_artifacts:
+          path: build
 
+      - run: now build -t ${NOW_TOKEN} --name=spiritual-gifts --static --public
+      - run: npx now-realias
+      - run: now rm -t ${NOW_TOKEN} $(npx now-no-alias | jq -r '.[] | .uid') -y
