@@ -15,6 +15,7 @@ import {
   routerMiddleware,
 } from 'react-router-redux'
 import quizReducer from './ducks/quiz'
+import GiftContainer from './containers/GiftContainer'
 
 import 'url-search-params-polyfill'
 
@@ -43,6 +44,7 @@ ReactDOM.render(
         <Switch>
           <Route path="/" exact component={App} />
           <Route path="/results" exact component={Results} />
+          <Route path="/gifts/:gift" exact component={GiftContainer} />
           <Route component={NotFound} />
         </Switch>
       </ConnectedRouter>

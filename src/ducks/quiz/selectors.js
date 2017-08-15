@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import kebabCase from 'lodash/kebabCase'
 import calculateGifts from './calculateGifts'
 
 const currentQuestion = ({ quiz }) => quiz.get('currentQuestion')
@@ -47,6 +48,14 @@ export const getResultsSearchString = createSelector(
         .join('&')}`
     }
     return ''
+  }
+)
+
+export const getGiftFromId = createSelector(
+  gifts,
+  (_state, props) => props.match.params.gift,
+  (gifts, giftSlug) => {
+    return gifts.find(value => kebabCase(value.gift) === giftSlug)
   }
 )
 
