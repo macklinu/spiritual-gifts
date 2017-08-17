@@ -1,6 +1,7 @@
 // @ts-check
 
 import React from 'react'
+import styled from 'styled-components'
 import { Box, Button, Heading, Flex } from 'rebass'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -16,8 +17,10 @@ import {
 
 const responsiveWidths = [1, 3 / 4, 3 / 5, 1 / 2]
 
+const Container = styled(Flex)`height: 100vh;`
+
 const App = ({ quizState, onBegin, answers, resultsSearchString }) =>
-  <Flex wrap direction="column" align="center" justify="center">
+  <Container wrap direction="column" align="center" justify="center">
     {quizState === 'initial' &&
       <Box width={responsiveWidths}>
         <Heading>Spiritual Gifts Assessment</Heading>
@@ -36,7 +39,7 @@ const App = ({ quizState, onBegin, answers, resultsSearchString }) =>
           search: resultsSearchString,
         }}
       />}
-  </Flex>
+  </Container>
 
 const mapStateToProps = state => ({
   quizState: getQuizState(state),
