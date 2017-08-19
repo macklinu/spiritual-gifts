@@ -1,7 +1,7 @@
 // @ts-check
 
 import React from 'react'
-import styled from 'styled-components'
+import glamorous from 'glamorous'
 import { Box, Button, Heading, Flex } from 'rebass'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -17,7 +17,9 @@ import {
 
 const responsiveWidths = [1, 3 / 4, 3 / 5, 1 / 2]
 
-const Container = styled(Flex)`height: 100vh;`
+const Container = glamorous(Flex)({
+  height: '100vh',
+})
 
 const App = ({ quizState, onBegin, answers, resultsSearchString }) =>
   <Container wrap direction="column" align="center" justify="center">

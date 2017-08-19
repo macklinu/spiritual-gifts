@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "glamorous": "^4.2.1",
     "history": "^4.6.3",
     "immutable": "^3.8.1",
     "lodash": "^4.17.4",

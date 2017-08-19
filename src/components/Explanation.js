@@ -1,14 +1,14 @@
 import React from 'react'
-import styled from 'styled-components'
+import glamorous from 'glamorous'
 import setDisplayName from 'recompose/setDisplayName'
 import ButtonGroup from './ButtonGroup'
 import { Text } from 'rebass'
 
-const Container = styled.div`
-  > * {
-    margin: 16px 0px 16px 0px;
-  }
-`
+const Container = glamorous.div({
+  '> *': {
+    margin: '16px 0px 16px 0px',
+  },
+})
 
 export default setDisplayName('Explanation')(() =>
   <Container>

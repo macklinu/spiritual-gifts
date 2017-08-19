@@ -1,12 +1,14 @@
 import React from 'react'
 import { Lead, Flex } from 'rebass'
-import styled from 'styled-components'
+import glamorous from 'glamorous'
 import { connect } from 'react-redux'
 import ButtonGroup from './ButtonGroup'
 import { answerQuestion } from '../ducks/quiz'
 import { getCurrentQuestionText } from '../ducks/quiz/selectors'
 
-const TextContainer = styled(Flex)`height: ${props => props.height || '128px'};`
+const TextContainer = glamorous(Flex)({
+  height: 128,
+})
 
 const Question = ({ text, onAnswered }) =>
   <div>
