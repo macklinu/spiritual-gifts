@@ -1,37 +1,71 @@
 // @ts-check
 
 import React from 'react'
-import styled from 'styled-components'
-import { Box, Button, Heading, Flex } from 'rebass'
+import styled, { injectGlobal } from 'styled-components'
+import { Box, Flex } from 'grid-styled'
+import { Heading as RebassHeading } from 'rebass'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Explanation from './components/Explanation'
 import Progress from './components/Progress'
 import Question from './components/Question'
-import { startQuiz } from './ducks/quiz'
+import ButtonGroup from './components/ButtonGroup'
+import Button from './components/Button'
+import { startQuiz, answerQuestion } from './ducks/quiz'
 import {
   getAnswers,
   getQuizState,
   getResultsSearchString,
 } from './ducks/quiz/selectors'
 
-const responsiveWidths = [1, 3 / 4, 3 / 5, 1 / 2]
+injectGlobal`
+  * { box-sizing: border-box; }
+  body, p { margin: 0; }
+`
 
-const Container = styled(Flex)`height: 100vh;`
+const responsiveWidths = [1, null, 3 / 4]
 
-const App = ({ quizState, onBegin, answers, resultsSearchString }) =>
-  <Container wrap direction="column" align="center" justify="center">
+const Container = styled.div`height: 100vh;`
+
+const QuizContainer = styled(Flex)`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+`
+
+const OverflowBox = styled(Box)`
+  overflow-y: scroll;
+`
+
+const Heading = styled(RebassHeading)`color: #364962;`
+
+const App = ({
+  quizState,
+  onBegin,
+  onAnswered,
+  answers,
+  resultsSearchString,
+}) =>
+  <Container>
     {quizState === 'initial' &&
-      <Box width={responsiveWidths}>
+      <Box width={responsiveWidths} p={2}>
         <Heading>Spiritual Gifts Assessment</Heading>
         <Explanation />
-        <Button onClick={onBegin}>Begin</Button>
+        <Button mt={2} onClick={onBegin}>
+          Begin
+        </Button>
       </Box>}
     {quizState === 'inprogress' &&
-      <Box width={responsiveWidths}>
-        <Progress />
-        <Question />
-      </Box>}
+      <QuizContainer width={responsiveWidths}>
+        <OverflowBox p={2}>
+          <Question />
+          <Progress mt={2} />
+        </OverflowBox>
+        <Box>
+          <ButtonGroup onSelected={onAnswered} />
+        </Box>
+      </QuizContainer>}
     {quizState === 'complete' &&
       <Redirect
         to={{
@@ -49,6 +83,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onBegin: () => dispatch(startQuiz()),
+  onAnswered: answer => dispatch(answerQuestion(answer)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

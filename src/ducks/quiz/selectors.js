@@ -19,7 +19,7 @@ export const getProgressText = createSelector(
   currentQuestion,
   totalQuestions,
   (currentQuestion, totalQuestions) =>
-    `${currentQuestion + 1} of ${totalQuestions}`
+    `${currentQuestion + 1}/${totalQuestions}`
 )
 
 export const getQuizState = createSelector(

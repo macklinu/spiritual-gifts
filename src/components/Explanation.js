@@ -1,31 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 import setDisplayName from 'recompose/setDisplayName'
-import ButtonGroup from './ButtonGroup'
-import { Text } from 'rebass'
+import { Flex } from 'grid-styled'
+import Text from './Text'
 
-const Container = styled.div`
+const Container = styled(Flex)`
   > * {
-    margin: 16px 0px 16px 0px;
+    margin: 8px 0 8px 0;
   }
 `
 
 export default setDisplayName('Explanation')(() =>
-  <Container>
+  <Container column>
     <Text>
       This Spiritual Gifts Assessment assumes that all gifts of the Holy Spirit
       mentioned in 1 Corinthians 12, Romans 12, and Ephesians 4 are still given
       to the church.
     </Text>
-    <Text>Respond to each question according to the following scale:</Text>
-    <ButtonGroup
-      labels={[
-        'Not at All / Never True',
-        'Sometimes / True Once in a While',
-        'Most of the Time / Usually True',
-        'Consistently / Definitely True',
-      ]}
-    />
     <Text bold>
       Answer according to who you are, not who you would like to be, or think
       you ought to be.

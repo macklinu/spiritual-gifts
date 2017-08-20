@@ -2,7 +2,8 @@ import React from 'react'
 import compose from 'recompose/compose'
 import setDisplayName from 'recompose/setDisplayName'
 import flattenProp from 'recompose/flattenProp'
-import { Heading, Card, Relative, Absolute, Subhead, Flex, Lead } from 'rebass'
+import { Heading, Card, Relative, Absolute, Subhead, Flex } from 'rebass'
+import Text from './Text'
 
 const enhance = compose(setDisplayName('Gift'), flattenProp('gift'))
 
@@ -16,6 +17,6 @@ export default enhance(({ gift, description, rank }) =>
     <Flex p={6} bg="blue" justify="center" align="start">
       <Heading color="white" children={gift} />
     </Flex>
-    <Lead p={2} children={description} />
+    <Text p={2} children={description} />
   </Card>
 )

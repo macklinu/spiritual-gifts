@@ -2,7 +2,12 @@ import { theme } from 'rebass'
 
 export default {
   ...theme,
+  colors: {
+    ...theme.colors,
+    blue: '#227af4',
+    black: '#364962',
+  },
   font:
-    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+    'HelveticaNeue, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   radius: 2,
 }
