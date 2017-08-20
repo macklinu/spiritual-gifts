@@ -42,7 +42,7 @@ export const getResultsSearchString = createSelector(
   (quizState, answers) => {
     if (quizState === 'complete') {
       return `?${calculateGifts(answers)
-        .take(3)
+        .take(5)
         .keySeq()
         .map((key, index) => `${index}=${key}`)
         .join('&')}`
@@ -64,7 +64,13 @@ export const getGiftResults = createSelector(
   location,
   (gifts, location) => {
     const params = new URLSearchParams(location.search)
-    const giftKeys = [params.get(0), params.get(1), params.get(2)]
+    const giftKeys = [
+      params.get(0),
+      params.get(1),
+      params.get(2),
+      params.get(3),
+      params.get(4),
+    ]
     const results = giftKeys.map(result =>
       gifts.get(result, {
         key: result,
