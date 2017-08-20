@@ -19,27 +19,33 @@ const responsiveWidths = [1, 3 / 4, 3 / 5, 1 / 2]
 
 const Container = styled(Flex)`height: 100vh;`
 
-const App = ({ quizState, onBegin, answers, resultsSearchString }) =>
-  <Container wrap direction="column" align="center" justify="center">
-    {quizState === 'initial' &&
-      <Box width={responsiveWidths}>
-        <Heading>Spiritual Gifts Assessment</Heading>
-        <Explanation />
-        <Button onClick={onBegin}>Begin</Button>
-      </Box>}
-    {quizState === 'inprogress' &&
-      <Box width={responsiveWidths}>
-        <Progress />
-        <Question />
-      </Box>}
-    {quizState === 'complete' &&
-      <Redirect
-        to={{
-          pathname: '/results',
-          search: resultsSearchString,
-        }}
-      />}
-  </Container>
+class App extends React.Component {
+  render() {
+    const { quizState, onBegin, answers, resultsSearchString } = this.props
+    return (
+      <Container wrap direction="column" align="center" justify="center">
+        {quizState === 'initial' &&
+          <Box width={responsiveWidths}>
+            <Heading>Spiritual Gifts Assessment</Heading>
+            <Explanation />
+            <Button onClick={onBegin}>Begin</Button>
+          </Box>}
+        {quizState === 'inprogress' &&
+          <Box width={responsiveWidths}>
+            <Progress />
+            <Question />
+          </Box>}
+        {quizState === 'complete' &&
+          <Redirect
+            to={{
+              pathname: '/results',
+              search: resultsSearchString,
+            }}
+          />}
+      </Container>
+    )
+  }
+}
 
 const mapStateToProps = state => ({
   quizState: getQuizState(state),

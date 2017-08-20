@@ -2,8 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Route, Switch } from 'react-router-dom'
 import { Provider as RebassProvider } from 'rebass'
-import App from './App'
-import Results from './Results'
 import registerServiceWorker from './registerServiceWorker'
 import theme from './theme'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
@@ -15,7 +13,7 @@ import {
   routerMiddleware,
 } from 'react-router-redux'
 import quizReducer from './ducks/quiz'
-import GiftContainer from './containers/GiftContainer'
+import asyncComponent from './components/asyncComponent'
 
 import 'url-search-params-polyfill'
 
@@ -37,14 +35,20 @@ const store = createStore(
 
 const NotFound = () => <h1>Not Found</h1>
 
+const AsyncApp = asyncComponent(() => import('./App'))
+const AsyncResults = asyncComponent(() => import('./Results'))
+const AsyncGiftContainer = asyncComponent(() =>
+  import('./containers/GiftContainer')
+)
+
 ReactDOM.render(
   <Provider store={store}>
     <RebassProvider theme={theme}>
       <ConnectedRouter history={history}>
         <Switch>
-          <Route path="/" exact component={App} />
-          <Route path="/results" exact component={Results} />
-          <Route path="/gifts/:gift" exact component={GiftContainer} />
+          <Route path="/" exact component={AsyncApp} />
+          <Route path="/results" exact component={AsyncResults} />
+          <Route path="/gifts/:gift" exact component={AsyncGiftContainer} />
           <Route component={NotFound} />
         </Switch>
       </ConnectedRouter>
