@@ -15,8 +15,9 @@ const ButtonComponent = styled.button`
   background: white;
   color: #227af4;
   font-size: 16px;
+  font-weight: 500;
   width: 100%;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.1s ease;
 
   &:hover {
     background: #227af4;
