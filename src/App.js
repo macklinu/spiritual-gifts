@@ -3,7 +3,6 @@
 import React from 'react'
 import styled, { injectGlobal } from 'styled-components'
 import { Box, Flex } from 'grid-styled'
-import { Heading as RebassHeading } from 'rebass'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Explanation from './components/Explanation'
@@ -17,6 +16,7 @@ import {
   getQuizState,
   getResultsSearchString,
 } from './ducks/quiz/selectors'
+import Heading from './components/Heading'
 
 injectGlobal`
   * { box-sizing: border-box; }
@@ -25,7 +25,7 @@ injectGlobal`
 
 const responsiveWidths = [1, null, 3 / 4]
 
-const Container = styled.div`height: 100vh;`
+const Container = styled(Flex)`height: 100vh;`
 
 const QuizContainer = styled(Flex)`
   display: flex;
@@ -34,11 +34,9 @@ const QuizContainer = styled(Flex)`
   justify-content: space-between;
 `
 
-const OverflowBox = styled(Box)`
+const ScrollableBox = styled(Box)`
   overflow-y: scroll;
 `
-
-const Heading = styled(RebassHeading)`color: #364962;`
 
 const App = ({
   quizState,
@@ -47,7 +45,7 @@ const App = ({
   answers,
   resultsSearchString,
 }) =>
-  <Container>
+  <Container py={[0, null, 4]}>
     {quizState === 'initial' &&
       <Box width={responsiveWidths} p={2}>
         <Heading>Spiritual Gifts Assessment</Heading>
@@ -58,10 +56,10 @@ const App = ({
       </Box>}
     {quizState === 'inprogress' &&
       <QuizContainer width={responsiveWidths}>
-        <OverflowBox p={2}>
+        <ScrollableBox p={2}>
           <Question />
           <Progress mt={2} />
-        </OverflowBox>
+        </ScrollableBox>
         <Box>
           <ButtonGroup onSelected={onAnswered} />
         </Box>
